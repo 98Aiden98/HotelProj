@@ -28,6 +28,8 @@ const memories = [
   },
 ];
 
+const x: number = "hello";
+
 const trpc = initTRPC.create();
 
 export const trpcRouter = trpc.router({

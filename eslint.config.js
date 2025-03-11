@@ -1,13 +1,3 @@
-import pluginJs from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import pluginImport from "eslint-plugin-import";
-import prettierPlugin from "eslint-plugin-prettier";
-import eslintReact from "eslint-plugin-react";
-import pluginReact from "eslint-plugin-react";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-// import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
-
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
@@ -19,8 +9,6 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint.plugin,
       react: eslintReact,
-      // 'react-hooks': eslintReactHooks,
-      // 'react-refresh': eslintReactRefresh,
       prettier: prettierPlugin,
       import: pluginImport,
     },
@@ -35,6 +23,8 @@ export default [
     rules: {
       ...prettierPlugin.configs.recommended.rules,
       ...eslintConfigPrettier.rules,
+      // Отключаем проверку окончания строк
+      "linebreak-style": "off",
       "react/react-in-jsx-scope": "off",
       "import/order": [
         "error",

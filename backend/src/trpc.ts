@@ -29,7 +29,7 @@ const memories = [
 ];
 
 const x: string = "hello";
-console.info(x)
+console.info(x);
 
 const trpc = initTRPC.create();
 

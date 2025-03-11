@@ -28,7 +28,8 @@ const memories = [
   },
 ];
 
-const x: number = "hello";
+const x: string = "hello";
+console.info(x)
 
 const trpc = initTRPC.create();
 

@@ -1,3 +1,13 @@
+import tseslint from "@typescript-eslint/eslint-plugin";
+import eslintReact from "eslint-plugin-react";
+import prettierPlugin from "eslint-plugin-prettier";
+import pluginImport from "eslint-plugin-import";
+import globals from "globals";
+import pluginJs from "eslint-plugin-js";
+import eslintConfigPrettier from "eslint-config-prettier";
+import pluginReact from "eslint-plugin-react";
+
+
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],

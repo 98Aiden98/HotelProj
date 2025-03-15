@@ -4,6 +4,7 @@
     "transpileOnly": true
   },
   "compilerOptions": {
+    
     "outDir": "./dist",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

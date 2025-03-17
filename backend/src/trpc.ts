@@ -1,39 +1,30 @@
 import { initTRPC } from "@trpc/server";
+import _ from "lodash"
+import {z} from "zod"
 
-const memories = [
-  {
-    id: "head1",
-    name: "Header1",
-    description: "This is the header number 1",
-  },
-  {
-    id: "head2",
-    name: "Header2",
-    description: "This is the header number 2",
-  },
-  {
-    id: "head3",
-    name: "Header3",
-    description: "This is the header number 3",
-  },
-  {
-    id: "head4",
-    name: "Header4",
-    description: "This is the header number 4",
-  },
-  {
-    id: "head5",
-    name: "Header5",
-    description: "This is the header number 5",
-  },
-];
+const memories = _.times(100, (i)=>({
+  id: `head${i}`,
+  name: `Header${i}`,
+  description: `This is the header number ${i}`,
+  text: _.times(20, (j)=>`<p>Text paragraph ${j} of idea ${i}...</p>`).join('')
+}))
+
+
 
 const trpc = initTRPC.create();
 
 export const trpcRouter = trpc.router({
   getMemories: trpc.procedure.query(() => {
-    return { memories };
+    return { memories: memories.map((memory)=> _.pick(memory, ['id', 'name', 'description'])) };
   }),
+  getMemory: trpc.procedure.input(
+    z.object({
+      memoryId: z.string()
+    })
+  ).query(({input}) => {
+    const memory = memories.find((memory)=> memory.id===input.memoryId)
+    return {memory: memory || null} 
+  })
 });
 
 export type TrpcRouter = typeof trpcRouter;

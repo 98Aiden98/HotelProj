@@ -290,7 +290,7 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       sass:
-        specifier: ^1.66.1
+        specifier: ^1.85.1
         version: 1.85.1
       superjson:
         specifier: ^1.13.1

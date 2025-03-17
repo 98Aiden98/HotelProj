@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "b": "pnpm --filter @hotelproj/backend",
-    "w": "pnpm --filter @hoteproj/webapp",
+    "w": "pnpm --filter @hotelproj/webapp",
     "dev": "pnpm -r --parallel dev",
     "test": "pnpm -r test",
     "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
@@ -13,8 +13,7 @@
     "dcc": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose config'",
     "dcb": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose build'",
     "dcu": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose up'",
-    "hl": "heroku login && heroku container:login",
-    "prepare": "husky install"
+    "hl": "heroku login && heroku container:login"
   },
   "dependencies": {
     "cross-env": "^7.0.3",

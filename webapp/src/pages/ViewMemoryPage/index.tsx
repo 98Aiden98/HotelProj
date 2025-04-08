@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { viewMemoryRouteTypes } from "../../lib/routes";
 import {trpc} from "../../lib/trpc"
+import css from "./index.module.scss"
+import { Segment } from "../../components/Segment";
 
  export const  ViewMemoryPage = () => {
   const {memoryId} = useParams() as viewMemoryRouteTypes
@@ -22,10 +24,11 @@ import {trpc} from "../../lib/trpc"
   }
 
    return(
-    <div className="1">
-        <h1>{data.memory.name}</h1>
-        <p>{data.memory.description}</p>
-        <div dangerouslySetInnerHTML={{__html: data.memory.text}}></div>
-    </div>
+    <Segment
+    title={data.memory.name}
+    description={data.memory.description}
+    >
+      <div className={css.text} dangerouslySetInnerHTML={{__html: data.memory.text}}></div>
+    </Segment>
    );
  };

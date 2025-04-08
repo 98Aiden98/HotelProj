@@ -1,60 +1,79 @@
 @use "../../styles/_vars.scss" as *;
 @use "../../styles/_mixins.scss" as *;
 
+// Если переменные не определены в _vars.scss, можно задать их здесь:
+$primary-color: #3498db;
+$text-color: #333;
+$border-color: #e0e0e0;
+
 $breakpoint: "<=900px";
 
 .layout {
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
-  height: 100%;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+
   @include media($breakpoint) {
-    flex-flow: column nowrap;
+    flex-direction: column;
   }
 
   .navigation {
-    height: 100%;
-    overflow: auto;
-    flex: 0 0 200px;
-    padding: 20px 30px;
-    border-right: 1px solid $black;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    flex: 0 0 240px;
+    padding: 2rem;
+    border-right: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
     @include media($breakpoint) {
-      overflow: visible;
-      flex: 0 0 auto;
-      height: auto;
+      flex: none;
+      width: 100%;
       border-right: none;
-      border-bottom: 1px solid $black;
+      border-bottom: 1px solid $border-color;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .logo {
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: $primary-color;
     }
 
     .menu {
-      .item {
-        &:not(:first-child) {
-          margin-top: 5px;
-        }
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
 
+      .item {
         .link {
           @include link;
+          font-size: 1rem;
+          color: $text-color;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $primary-color;
+          }
         }
       }
     }
   }
 
   .content {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    flex: 1 1 100%;
-    padding: 20px 30px;
+    flex: 1;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+
     @include media($breakpoint) {
-      overflow: visible;
-      flex: 0 0 auto;
-      height: auto;
+      padding: 1.5rem;
     }
   }
 }

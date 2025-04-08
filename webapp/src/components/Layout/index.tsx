@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { getAllMemoriesRoute } from "../../lib/routes";
+import { getAllMemoriesRoute, getNewMemoryRoute } from "../../lib/routes";
 import css from "./index.module.scss";
 
 export const Layout = () => {
@@ -10,7 +10,12 @@ export const Layout = () => {
         <ul className={css.menu}>
           <li className={css.item}>
             <Link className={css.link} to={getAllMemoriesRoute()}>
-              All Ideas
+              All memories
+            </Link>
+          </li>
+          <li className={css.item}>
+            <Link className={css.link} to={getNewMemoryRoute()}>
+              Add memory
             </Link>
           </li>
         </ul>

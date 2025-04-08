@@ -1,0 +1,28 @@
+@use "../../styles/_vars.scss" as *;
+@use "../../styles/_mixins.scss" as *;
+
+$primary-color: #3498db;
+$text-color: #333;
+
+.title {
+  @include h1;
+  color: $primary-color;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: $text-color;
+
+  & > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

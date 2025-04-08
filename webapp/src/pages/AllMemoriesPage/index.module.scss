@@ -1,0 +1,39 @@
+@use "../../styles/_vars.scss" as *;
+@use "../../styles/_mixins.scss" as *;
+
+.memories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  .memory {
+    background-color: $bg-color;
+    padding: 1.5rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+      .memoryLink {
+        @include link;
+        color: $text-color;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .memoryDescription {
+      font-size: 1rem;
+      color: #666;
+    }
+  }
+

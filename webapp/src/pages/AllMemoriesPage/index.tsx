@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { trpc } from "../../lib/trpc";
 import { getViewMemoryRoute } from "../../lib/routes";
+import css from "./index.module.scss";
+import { Segment } from "../../components/Segment";
 
 
 export const AllMemoriesPage = () => {
@@ -19,14 +21,19 @@ export const AllMemoriesPage = () => {
   }
 
   return (
-    <div className="1">
-      <div className="any_classname">123</div>
+    <Segment title="All memories">
+      <div className={css.memories}>
       {data.memories.map((memory) => (
-        <div key={memory.id} className="2">
-          <h2><Link to={getViewMemoryRoute({memoryId: memory.id})}>{memory.name}</Link></h2>
-          <p>{memory.description}</p>
+        <div key={memory.id} className={css.memory}>
+          <Segment 
+          title={<Link className={css.memoryLink} to={getViewMemoryRoute({memoryId: memory.id})}>{memory.name}</Link>}
+          size={2}
+          description={memory.description}
+          >
+          </Segment>
         </div>
       ))}
-    </div>
+      </div>
+    </Segment>
   );
 };

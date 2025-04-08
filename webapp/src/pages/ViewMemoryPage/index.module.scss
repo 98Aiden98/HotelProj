@@ -1,9 +1,6 @@
 @use "../../styles/_vars.scss" as *;
 @use "../../styles/_mixins.scss" as *;
 
-$primary-color: #3498db;
-$text-color: #333;
-
 .title {
   @include h1;
   color: $primary-color;
@@ -13,7 +10,7 @@ $text-color: #333;
 .description {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #555;
+  color: $text-color;
   line-height: 1.6;
 }
 

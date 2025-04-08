@@ -4,3 +4,7 @@
 .title{
     @include h1;
 }
+
+.button{
+    @include button;
+}

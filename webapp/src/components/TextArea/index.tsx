@@ -1,3 +1,4 @@
+import css from "./index.module.scss";
 import { FormikProps } from "formik";
 
 export const TextArea = ({
@@ -11,14 +12,14 @@ export const TextArea = ({
 }) => {
   const value = formik.values[name];
   const error = formik.errors[name] as string | undefined;
-  const touched = formik.touched[name]
-
+  const touched = formik.touched[name];
 
   return (
     <div style={{ marginBottom: 10 }}>
-      <label htmlFor={name}>{label}</label>
+      <label className={css.label} htmlFor={name}>{label}</label>
       <br />
       <textarea
+        className={css.textarea}
         onChange={(e) => {
           formik.setFieldValue(name, e.target.value);
         }}

@@ -27,7 +27,7 @@ export const NewMemoryPage = () => {
       })  
 
       return (
-        <Segment title="New Idea">
+        <Segment title="New Memory">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -39,7 +39,7 @@ export const NewMemoryPage = () => {
             <Input name="description" label="Description" formik={formik} />
 
             <TextArea name="text" label="Text" formik={formik} />
-            <button type="submit">Create Idea</button>
+            <button className={css.button} type="submit">Create Memory</button>
           </form>
         </Segment>
       )

@@ -1,11 +1,6 @@
 @use "../../styles/_vars.scss" as *;
 @use "../../styles/_mixins.scss" as *;
 
-// Если переменные не определены в _vars.scss, можно задать их здесь:
-$primary-color: #3498db;
-$text-color: #333;
-$border-color: #e0e0e0;
-
 $breakpoint: "<=900px";
 
 .layout {

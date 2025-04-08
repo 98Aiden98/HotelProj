@@ -3,29 +3,42 @@ import { Segment } from "../../components/Segment";
 import css from "./index.module.scss";
 import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
+import {useFormik} from 'formik'
+import {withZodSchema} from 'formik-validator-zod'
+import zod from 'zod'
 
 export const NewMemoryPage = () => {
-    const [state, setState] = useState({
-        name: '',
-        nick: '',
-        description: '',
-        text: '',
-      })
-    
+      const formik = useFormik({
+        initialValues: {
+          name: '',
+          nick: '',
+          description: '',
+          text: ''
+        },
+        validate: withZodSchema(zod.object({
+          name: zod.string().min(1, 'Name is required'),
+          nick: zod.string().regex(/^[a-z0-9-]+$/,'Nick can only contain letters, numbers and dashes').min(1, 'Nick is required'),
+          description: zod.string().min(1, 'Description is required'),
+          text: zod.string().min(100, 'Text must be at least 100 characters'),
+        })),
+        onSubmit: values => {
+          console.info('Submitted', values)
+        },
+      })  
+
       return (
         <Segment title="New Idea">
           <form
             onSubmit={(e) => {
               e.preventDefault()
-              console.info('Submitted', state)
+              formik.handleSubmit()
             }}
           >
-            <Input name="name" label="Name" state={state} setState={setState} />
-            <Input name="nick" label="Nick" state={state} setState={setState} />
-            <Input name="description" label="Description" state={state} setState={setState} />
+            <Input name="name" label="Name" formik={formik} />
+            <Input name="nick" label="Nick" formik={formik} />
+            <Input name="description" label="Description" formik={formik} />
 
-            <TextArea name="text" label="Text" state={state} setState={setState} />
-
+            <TextArea name="text" label="Text" formik={formik} />
             <button type="submit">Create Idea</button>
           </form>
         </Segment>

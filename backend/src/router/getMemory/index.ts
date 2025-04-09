@@ -9,6 +9,6 @@ export const getMemoryTrpcRoute = trpc.procedure
     }),
   )
   .query(({ input }) => {
-    const memory = memories.find((memory) => memory.id === input.memoryId);
+    const memory = memories.find((memory) => memory.name === input.memoryId);
     return { memory: memory || null };
   });

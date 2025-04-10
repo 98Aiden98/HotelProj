@@ -1,0 +1,17 @@
+@use "../../styles/_vars.scss" as *;
+@use "../../styles/_mixins.scss" as *;
+
+.alert {
+  padding: 10px;
+  border-radius: $borderRadiusSmall;
+
+  &.red {
+    background-color: $lightred;
+    color: $darkred;
+  }
+
+  &.green {
+    background-color: $lightgreen;
+    color: $darkgreen;
+  }
+}

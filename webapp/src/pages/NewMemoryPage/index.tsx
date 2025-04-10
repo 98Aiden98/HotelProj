@@ -7,6 +7,9 @@ import { withZodSchema } from "formik-validator-zod";
 import { trpc } from "../../lib/trpc";
 import { zCreateMemoryTrpcInput } from "@hotelproj/backend/src/router/createMemory/input";
 import { useState } from "react";
+import { Alert } from "../../components/Alert";
+import { Button } from "../../components/Button";
+import { FormItems } from "../../components/FormItems";
 
 export const NewMemoryPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -46,25 +49,26 @@ export const NewMemoryPage = () => {
           formik.handleSubmit();
         }}
       >
-        <Input name="name" label="Name" formik={formik} />
-        <Input name="nick" label="Nick" formik={formik} />
-        <Input name="description" label="Description" formik={formik} />
+        <FormItems>
+          <Input name="name" label="Name" maxWidth={500} formik={formik} />
+          <Input name="nick" label="Nick" maxWidth={500} formik={formik} />
+          <Input
+            name="description"
+            label="Description"
+            maxWidth={1000}
+            formik={formik}
+          />
 
-        <TextArea name="text" label="Text" formik={formik} />
+          <TextArea name="text" label="Text" formik={formik} />
 
-        {!!submittingError && <div style={{ color: "red" }}>{submittingError}</div>}
+          {!!submittingError && <Alert color="red">{submittingError}</Alert>}
 
-        {successMessageVisible && (
-          <div style={{ color: "green" }}>Memory created successfully</div>
-        )}
+          {!!successMessageVisible && (
+            <Alert color="green">Memory created successfully</Alert>
+          )}
 
-        <button
-          className={css.button}
-          type="submit"
-          disabled={formik.isSubmitting}
-        >
-          {formik.isSubmitting ? "Creating..." : "Create Memory"}
-        </button>
+          <Button loading={formik.isSubmitting}>Create Memory</Button>
+        </FormItems>
       </form>
     </Segment>
   );

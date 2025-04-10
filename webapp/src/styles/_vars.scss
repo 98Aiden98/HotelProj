@@ -1,7 +1,18 @@
 $black: #000;
 $white: #fff;
-$blue: #00c;
+
+$blue: rgb(69, 69, 226);
+$lightblue: rgb(174, 174, 252);
+$darkblue: #009;
+
 $red: #c00;
+$lightred: #fdd;
+$darkred: #900;
+
+$green: rgb(86, 248, 86);
+$lightgreen: rgb(208, 250, 208);
+$darkgreen: rgb(73, 148, 73);
+
 $primary-color: #505fe9;
 $text-color: #333;
 $bg-color: #fff;
@@ -12,3 +23,6 @@ $defaultFontSize: 16px;
 $defaultBackgroundColor: $white;
 $defaultTextColor: $black;
 $defaultLineHeight: 1.6;
+
+$borderRadiusSmall: 4px;
+$borderRadiusBig: 8px;

@@ -1,0 +1,8 @@
+@use "../../styles/_vars.scss" as *;
+@use "../../styles/_mixins.scss" as *;
+
+.formItems {
+    & > *:not(:first-child) {
+        margin-top: 12px;
+    }
+}

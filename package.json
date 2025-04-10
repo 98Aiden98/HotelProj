@@ -17,6 +17,7 @@
     "hl": "heroku login && heroku container:login"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dotenv-cli": "^7.3.0"
   },

@@ -4,8 +4,8 @@ import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
 import { useFormik } from "formik";
 import { withZodSchema } from "formik-validator-zod";
-import zod from "zod";
 import { trpc } from "../../lib/trpc";
+import { zCreateMemoryTrpcInput } from "@hotelproj/backend/src/router/createMemory/input";
 
 export const NewMemoryPage = () => {
   const createMemory = trpc.createMemory.useMutation()
@@ -18,18 +18,7 @@ export const NewMemoryPage = () => {
       text: "",
     },
     validate: withZodSchema(
-      zod.object({
-        name: zod.string().min(1, "Name is required"),
-        nick: zod
-          .string()
-          .regex(
-            /^[a-z0-9-]+$/,
-            "Nick can only contain letters, numbers and dashes",
-          )
-          .min(1, "Nick is required"),
-        description: zod.string().min(1, "Description is required"),
-        text: zod.string().min(100, "Text must be at least 100 characters"),
-      }),
+      zCreateMemoryTrpcInput
     ),
     onSubmit: async (values) => {
       await createMemory.mutateAsync(values);

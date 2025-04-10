@@ -3,15 +3,27 @@ import cors from "cors";
 import express from "express";
 import { trpcRouter } from "./router";
 import { applyTrpcToExpressApp } from "./lib/trpc";
+import { AppContext, createAppContext } from "./lib/ctx";
 
-const expressApp = express();
-expressApp.use(cors());
-expressApp.get("/ping", (req, res) => {
-  res.send("pong");
-});
+void (async () => {
+  let ctx: AppContext | null = null;
 
-applyTrpcToExpressApp(expressApp, trpcRouter);
+  try {
+    ctx = createAppContext();
 
-expressApp.listen(3000, () => {
-  console.info("Listening on http://localhost:3000");
-});
+    const expressApp = express();
+    expressApp.use(cors());
+    expressApp.get("/ping", (req, res) => {
+      res.send("pong");
+    });
+
+    applyTrpcToExpressApp(expressApp, ctx, trpcRouter);
+
+    expressApp.listen(3000, () => {
+      console.info("Listening on http://localhost:3000");
+    });
+  } catch (e) {
+    console.error(e);
+    await ctx?.stop();
+  }
+})()

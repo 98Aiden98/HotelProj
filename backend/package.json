@@ -19,11 +19,14 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
   },
+  "prisma":{
+    "schema": "./src/prisma/schema.prisma"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.421.0",
     "@aws-sdk/s3-request-presigner": "^3.421.0",
     "@hotelproj/webapp": "workspace:*",
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.22.0",
     "@sentry/integrations": "^7.70.0",
     "@sentry/node": "^7.70.0",
     "@trpc/server": "^10.37.1",
@@ -43,7 +46,6 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "picocolors": "^1.0.0",
-    "prisma": "^5.2.0",
     "randomstring": "^1.3.0",
     "react-router-dom": "^6.15.0",
     "serialize-error": "8.1.0",
@@ -67,6 +69,7 @@
     "@types/passport-jwt": "^3.0.9",
     "@types/randomstring": "^1.1.9",
     "@types/triple-beam": "^1.3.3",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "prisma": "^5.22.0"
   }
 }

@@ -3,6 +3,7 @@ import _ from "lodash";
 import { createMemoryTrpcRoute } from './createMemory'
 import { getMemoriesTrpcRoute } from './getMemories'
 import { getMemoryTrpcRoute } from './getMemory'
+import { signInTrpcRoute } from './signIn'
 import { signUpTrpcRoute } from './signUp'
 // @endindex
 import { trpc } from "../lib/trpc";
@@ -12,6 +13,7 @@ export const trpcRouter = trpc.router({
 createMemory: createMemoryTrpcRoute,
 getMemories: getMemoriesTrpcRoute,
 getMemory: getMemoryTrpcRoute,
+signIn: signInTrpcRoute,
 signUp: signUpTrpcRoute,
 // @endindex
 });

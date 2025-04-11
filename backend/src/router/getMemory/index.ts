@@ -8,7 +8,11 @@ export const getMemoryTrpcRoute = trpc.procedure
       memoryId: z.string(),
     }),
   )
-  .query(({ input }) => {
-    const memory = memories.find((memory) => memory.name === input.memoryId);
-    return { memory: memory || null };
+  .query(async ({ ctx, input }) => {
+    const memory = await ctx.prisma.memory.findUnique({
+      where: {
+        nick: input.memoryId,
+      },
+    })
+    return { memory};
   });

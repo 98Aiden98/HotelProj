@@ -3,6 +3,7 @@ import { viewMemoryRouteTypes } from "../../lib/routes";
 import {trpc} from "../../lib/trpc"
 import css from "./index.module.scss"
 import { Segment } from "../../components/Segment";
+import format from "date-fns/format";
 
  export const  ViewMemoryPage = () => {
   const {memoryId} = useParams() as viewMemoryRouteTypes
@@ -28,6 +29,7 @@ import { Segment } from "../../components/Segment";
     title={data.memory.name}
     description={data.memory.description}
     >
+      <div className={css.createdAt}>Created At: {format(data.memory.createdAt, 'yyyy-MM-dd')}</div>
       <div className={css.text} dangerouslySetInnerHTML={{__html: data.memory.text}}></div>
     </Segment>
    );

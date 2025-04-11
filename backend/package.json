@@ -19,7 +19,7 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
   },
-  "prisma":{
+  "prisma": {
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
@@ -49,7 +49,7 @@
     "randomstring": "^1.3.0",
     "react-router-dom": "^6.15.0",
     "serialize-error": "8.1.0",
-    "superjson": "^1.13.1",
+    "superjson": "^1.13.3",
     "triple-beam": "^1.4.1",
     "trpc-playground": "^1.0.4",
     "winston": "^3.10.0",

@@ -5,10 +5,20 @@ import { zCreateMemoryTrpcInput } from "./input";
 
 export const createMemoryTrpcRoute = trpc.procedure
   .input(zCreateMemoryTrpcInput)
-  .mutation(({ input }) => {
-    if(memories.find((memory) => memory.nick === input.nick)){
-      throw Error("Memory with this nick already exists");
+  .mutation(async ({ input, ctx }) => {
+    const exMemory = await ctx.prisma.memory.findUnique({
+      where: {
+        nick: input.nick,
+      },
+    });
+
+    if (exMemory) {
+      throw new Error("Memory with this nick already exists");
     }
-    memories.unshift(input);
-    return true;
+
+    await ctx.prisma.memory.create({
+      data: input
+    })
+
+    return true
   });

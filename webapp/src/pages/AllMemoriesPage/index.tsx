@@ -26,7 +26,7 @@ export const AllMemoriesPage = () => {
       {data.memories.map((memory) => (
         <div key={memory.name} className={css.memory}>
           <Segment 
-          title={<Link className={css.memoryLink} to={getViewMemoryRoute({memoryId: memory.name})}>{memory.name}</Link>}
+          title={<Link className={css.memoryLink} to={getViewMemoryRoute({memoryId: memory.nick})}>{memory.name}</Link>}
           size={2}
           description={memory.description}
           >

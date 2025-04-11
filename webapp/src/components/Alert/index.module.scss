@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../styles/_vars.scss" as *;
 @use "../../styles/_mixins.scss" as *;
 
@@ -6,12 +7,12 @@
   border-radius: $borderRadiusSmall;
 
   &.red {
-    background-color: $lightred;
-    color: $darkred;
+    background-color: color.scale($red, $lightness: +50%);
+    color: color.scale($red, $lightness: -50%);;
   }
 
   &.green {
-    background-color: $lightgreen;
-    color: $darkgreen;
+    background-color: color.scale($green, $lightness: +50%);
+    color: color.scale($green, $lightness: -50%);
   }
 }

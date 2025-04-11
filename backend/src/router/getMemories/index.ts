@@ -7,10 +7,15 @@ export const getMemoriesTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
   const memories = await ctx.prisma.memory.findMany({
     select: {
       id: true,
-      name: true,
       nick: true,
+      name: true,
       description: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
+  //console.log("memories", memories);
   return { memories };
 });

@@ -1,5 +1,3 @@
-const getRouteParams = (x: any) => x
-
 export const getAllMemoriesRoute = () => '/'
 
 export const viewMemoryRouteParams = {memoryId: ':memoryId'}
@@ -8,3 +6,4 @@ export const getViewMemoryRoute = ({memoryId} : {memoryId: string}) => `/memorie
 export const getNewMemoryRoute = () => `/memories/new`
 export const getSignUpRoute = () => `/sign-up`
 export const getSignInRoute = () => `/sign-in`
+export const getSignOutRoute = () => `/sign-out`

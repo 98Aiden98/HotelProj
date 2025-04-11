@@ -8,11 +8,13 @@ import './styles/global.scss'
 import { NewMemoryPage } from "./pages/NewMemoryPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { SignInPage } from "./pages/SignInPage";
+import { SignOutPage } from "./pages/SignOutPage";
 export const App = () => {
   return ( 
     <TrpcProvider>
         <BrowserRouter>
           <Routes>
+          <Route path={routes.getSignOutRoute()} element={<SignOutPage />}/>
             <Route element={<Layout/>}>
               <Route path={routes.getSignUpRoute()} element={<SignUpPage />}/>
               <Route path={routes.getSignInRoute()} element={<SignInPage />}/>

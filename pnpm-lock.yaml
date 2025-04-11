@@ -200,7 +200,7 @@ importers:
         specifier: ^4.17.17
         version: 4.17.21
       '@types/jsonwebtoken':
-        specifier: ^9.0.2
+        specifier: ^9.0.9
         version: 9.0.9
       '@types/lodash':
         specifier: ^4.17.16
@@ -209,10 +209,10 @@ importers:
         specifier: ^20.5.0
         version: 20.17.24
       '@types/passport':
-        specifier: ^1.0.12
+        specifier: ^1.0.17
         version: 1.0.17
       '@types/passport-jwt':
-        specifier: ^3.0.9
+        specifier: ^3.0.13
         version: 3.0.13
       '@types/randomstring':
         specifier: ^1.1.9
@@ -318,7 +318,7 @@ importers:
         specifier: ^2.7.1
         version: 2.23.0
       '@types/js-cookie':
-        specifier: ^3.0.3
+        specifier: ^3.0.6
         version: 3.0.6
       '@types/lodash':
         specifier: ^4.14.198

@@ -16,6 +16,6 @@ export const signInTrpcRoute = trpc.procedure
       throw new Error("User not found");
     }
 
-    const token = signJWT(user.id)
-    return {token};
+    const token = signJWT(user.id);
+    return { token };
   });

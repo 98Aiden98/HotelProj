@@ -1,12 +1,11 @@
 import tseslint from "@typescript-eslint/eslint-plugin";
-import eslintReact from "eslint-plugin-react";
-import prettierPlugin from "eslint-plugin-prettier";
-import pluginImport from "eslint-plugin-import";
-import globals from "globals";
-import pluginJs from "eslint-plugin-js";
 import eslintConfigPrettier from "eslint-config-prettier";
+import pluginImport from "eslint-plugin-import";
+import nodePlugin from "eslint-plugin-node"; // Импортируем плагин node
+import prettierPlugin from "eslint-plugin-prettier";
+import eslintReact from "eslint-plugin-react";
 import pluginReact from "eslint-plugin-react";
-
+import globals from "globals";
 
 export default [
   {
@@ -17,17 +16,17 @@ export default [
   },
   {
     plugins: {
-      "@typescript-eslint": tseslint.plugin,
+      "@typescript-eslint": tseslint,
       react: eslintReact,
       prettier: prettierPlugin,
       import: pluginImport,
+      node: nodePlugin, // Добавляем плагин node
     },
   },
   {
     languageOptions: { globals: globals.browser },
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+  //tseslint.configs.flat?.recommended,
   pluginReact.configs.flat.recommended,
   {
     rules: {
@@ -61,17 +60,7 @@ export default [
         { skipTemplates: true, skipStrings: true },
       ],
       "no-console": ["error", { allow: ["info", "error", "warn"] }],
-      '@typescript-eslint/no-restricted-imports': [
-        'error',
-        {
-          patterns: [
-            {
-              regex: "^@hotelproj/backend/(?!(.*/)?input$).+$",
-              message: 'Импорт из бэкенда разрешен только для файлов input',
-            }
-          ]
-        }
-      ]
+      "node/no-process-env": "error", // Добавляем правило для плагина node
     },
   },
 ];

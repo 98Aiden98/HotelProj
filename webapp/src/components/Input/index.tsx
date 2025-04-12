@@ -1,6 +1,6 @@
-import css from "./index.module.scss";
-import { FormikProps } from "formik";
 import cn from "classnames";
+import { FormikProps } from "formik";
+import css from "./index.module.scss";
 
 export const Input = ({
   name,

@@ -1,10 +1,11 @@
 import * as trpcExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import express from "express";
-import { trpcRouter } from "./router";
-import { applyTrpcToExpressApp } from "./lib/trpc";
 import { AppContext, createAppContext } from "./lib/ctx";
+import { env } from "./lib/env";
 import { applyPassportToExpressApp } from "./lib/passport";
+import { applyTrpcToExpressApp } from "./lib/trpc";
+import { trpcRouter } from "./router";
 
 void (async () => {
   let ctx: AppContext | null = null;
@@ -21,11 +22,11 @@ void (async () => {
     applyPassportToExpressApp(expressApp, ctx);
     await applyTrpcToExpressApp(expressApp, ctx, trpcRouter);
 
-    expressApp.listen(3000, () => {
-      console.info("Listening on http://localhost:3000");
+    expressApp.listen(env.PORT, () => {
+      console.info(`Listening on http://localhost:${env.PORT}`);
     });
   } catch (e) {
     console.error(e);
     await ctx?.stop();
   }
-})()
+})();

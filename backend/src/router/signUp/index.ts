@@ -1,8 +1,8 @@
 import crypto from "crypto";
 import { trpc } from "../../lib/trpc";
-import { zSignUpTrpcInput } from "./input";
 import { getPasswordHash } from "../../utils/getPasswordHash";
 import { signJWT } from "../../utils/signJWT";
+import { zSignUpTrpcInput } from "./input";
 
 export const signUpTrpcRoute = trpc.procedure
   .input(zSignUpTrpcInput)
@@ -24,7 +24,7 @@ export const signUpTrpcRoute = trpc.procedure
       },
     });
 
-    const token = signJWT(user.id)
+    const token = signJWT(user.id);
 
-    return {token};
+    return { token };
   });

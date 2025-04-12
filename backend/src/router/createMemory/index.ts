@@ -17,8 +17,8 @@ export const createMemoryTrpcRoute = trpc.procedure
     }
 
     await ctx.prisma.memory.create({
-      data: input
-    })
+      data: input,
+    });
 
-    return true
+    return true;
   });

@@ -6,8 +6,8 @@ import {
   getSignOutRoute,
   getSignUpRoute,
 } from "../../lib/routes";
-import css from "./index.module.scss";
 import { trpc } from "../../lib/trpc";
+import css from "./index.module.scss";
 
 export const Layout = () => {
   const { data, isLoading, isFetching, isError } = trpc.getMe.useQuery();
@@ -30,10 +30,10 @@ export const Layout = () => {
                 </Link>
               </li>
               <li className={css.item}>
-            <Link className={css.link} to={getSignOutRoute()}>
-              Log out ({data.me.nick})
-            </Link>
-          </li>
+                <Link className={css.link} to={getSignOutRoute()}>
+                  Log out ({data.me.nick})
+                </Link>
+              </li>
             </>
           ) : (
             <>

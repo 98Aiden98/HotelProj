@@ -13,6 +13,6 @@ export const getMemoryTrpcRoute = trpc.procedure
       where: {
         nick: input.memoryId,
       },
-    })
-    return { memory};
+    });
+    return { memory };
   });

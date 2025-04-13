@@ -22,7 +22,7 @@ export const Layout = () => {
               All memories
             </Link>
           </li>
-          {isLoading || isFetching || isError ? null : data.me ? (
+          {isLoading || isFetching || isError ? null : data?.me ? (
             <>
               <li className={css.item}>
                 <Link className={css.link} to={getNewMemoryRoute()}>

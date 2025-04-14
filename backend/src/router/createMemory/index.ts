@@ -6,6 +6,10 @@ import { zCreateMemoryTrpcInput } from "./input";
 export const createMemoryTrpcRoute = trpc.procedure
   .input(zCreateMemoryTrpcInput)
   .mutation(async ({ input, ctx }) => {
+    if (!ctx.me) {
+      throw Error("Non authenticated");
+    }
+
     const exMemory = await ctx.prisma.memory.findUnique({
       where: {
         nick: input.nick,
@@ -17,7 +21,10 @@ export const createMemoryTrpcRoute = trpc.procedure
     }
 
     await ctx.prisma.memory.create({
-      data: input,
+      data: {
+        ...input,
+        authorId: ctx.me.id,
+      },
     });
 
     return true;

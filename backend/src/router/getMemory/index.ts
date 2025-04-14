@@ -13,6 +13,14 @@ export const getMemoryTrpcRoute = trpc.procedure
       where: {
         nick: input.memoryId,
       },
+      include: {
+        author: {
+          select: {
+            id: true,
+            nick: true,
+          },
+        },
+      },
     });
     return { memory };
   });

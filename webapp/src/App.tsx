@@ -4,6 +4,7 @@ import * as routes from "./lib/routes";
 import { TrpcProvider } from "./lib/trpc";
 import { AllMemoriesPage } from "./pages/AllMemoriesPage";
 import "./styles/global.scss";
+import { EditMemoryPage } from "./pages/EditMemoryPage";
 import { NewMemoryPage } from "./pages/NewMemoryPage";
 import { SignInPage } from "./pages/SignInPage";
 import { SignOutPage } from "./pages/SignOutPage";
@@ -25,6 +26,10 @@ export const App = () => {
             <Route
               path={routes.getNewMemoryRoute()}
               element={<NewMemoryPage />}
+            />
+            <Route
+              path={routes.getEditMemoryRoute(routes.editMemoryRouteParams)}
+              element={<EditMemoryPage />}
             />
             <Route
               path={routes.getViewMemoryRoute(routes.viewMemoryRouteParams)}

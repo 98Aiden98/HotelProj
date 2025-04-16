@@ -1,9 +1,6 @@
 import type { TrpcRouterOutput } from "@hotelproj/backend/src/router";
 import { zUpdateMemoryTrpcInput } from "@hotelproj/backend/src/router/updateMemory/input";
-import { useFormik } from "formik";
-import { withZodSchema } from "formik-validator-zod";
 import pick from "lodash/pick";
-import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert } from "../../components/Alert";
 import { Button } from "../../components/Button";
@@ -11,6 +8,7 @@ import { FormItems } from "../../components/FormItems";
 import { Input } from "../../components/Input";
 import { Segment } from "../../components/Segment";
 import { TextArea } from "../../components/TextArea";
+import { useForm } from "../../lib/form";
 import {
   type EditMemoryRouteParams,
   getViewMemoryRoute,
@@ -23,20 +21,16 @@ const EditMemoryComponent = ({
   memory: NonNullable<TrpcRouterOutput["getMemory"]["memory"]>;
 }) => {
   const navigate = useNavigate();
-  const [submittingError, setSubmittingError] = useState<string | null>(null);
   const updateMemory = trpc.updateMemory.useMutation();
-  const formik = useFormik({
+  const { formik, buttonProps, alertProps } = useForm({
     initialValues: pick(memory, ["name", "nick", "description", "text"]),
-    validate: withZodSchema(zUpdateMemoryTrpcInput.omit({ memoryId: true })),
+    validationSchema: zUpdateMemoryTrpcInput.omit({ memoryId: true }),
     onSubmit: async (values) => {
-      try {
-        setSubmittingError(null);
-        await updateMemory.mutateAsync({ memoryId: memory.id, ...values });
-        navigate(getViewMemoryRoute({ memoryId: values.nick }));
-      } catch (err: any) {
-        setSubmittingError(err.message);
-      }
+      await updateMemory.mutateAsync({ memoryId: memory.id, ...values });
+      navigate(getViewMemoryRoute({ memoryId: values.nick }));
     },
+    resetOnSuccess: false,
+    showValidationAlert: true,
   });
 
   return (
@@ -52,11 +46,9 @@ const EditMemoryComponent = ({
             formik={formik}
           />
           <TextArea label="Text" name="text" formik={formik} />
-          {!formik.isValid && !!formik.submitCount && (
-            <Alert color="red">Some fields are invalid</Alert>
-          )}
-          {submittingError && <Alert color="red">{submittingError}</Alert>}
-          <Button loading={formik.isSubmitting}>Update Memory</Button>
+
+          <Alert {...alertProps} />
+          <Button {...buttonProps}>Update Memory</Button>
         </FormItems>
       </form>
     </Segment>

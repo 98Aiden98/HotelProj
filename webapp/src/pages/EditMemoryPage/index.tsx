@@ -8,6 +8,7 @@ import { FormItems } from "../../components/FormItems";
 import { Input } from "../../components/Input";
 import { Segment } from "../../components/Segment";
 import { TextArea } from "../../components/TextArea";
+import { useMe } from "../../lib/ctx";
 import { useForm } from "../../lib/form";
 import {
   type EditMemoryRouteParams,
@@ -61,14 +62,9 @@ export const EditMemoryPage = () => {
   const getMemoryResult = trpc.getMemory.useQuery({
     memoryId,
   });
-  const getMeResult = trpc.getMe.useQuery();
+  const me = useMe();
 
-  if (
-    getMemoryResult.isLoading ||
-    getMemoryResult.isFetching ||
-    getMeResult.isLoading ||
-    getMeResult.isFetching
-  ) {
+  if (getMemoryResult.isLoading || getMemoryResult.isFetching) {
     return <span>Loading...</span>;
   }
 
@@ -76,16 +72,11 @@ export const EditMemoryPage = () => {
     return <span>Error: {getMemoryResult.error.message}</span>;
   }
 
-  if (getMeResult.isError) {
-    return <span>Error: {getMeResult.error.message}</span>;
-  }
-
   if (!getMemoryResult.data?.memory) {
     return <span>Idea not found</span>;
   }
 
   const memory = getMemoryResult.data.memory;
-  const me = getMeResult.data?.me;
 
   if (!me) {
     return <span>Only for authorized</span>;

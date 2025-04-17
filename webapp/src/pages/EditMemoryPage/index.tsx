@@ -1,4 +1,3 @@
-import type { TrpcRouterOutput } from "@hotelproj/backend/src/router";
 import { zUpdateMemoryTrpcInput } from "@hotelproj/backend/src/router/updateMemory/input";
 import pick from "lodash/pick";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,19 +7,27 @@ import { FormItems } from "../../components/FormItems";
 import { Input } from "../../components/Input";
 import { Segment } from "../../components/Segment";
 import { TextArea } from "../../components/TextArea";
-import { useMe } from "../../lib/ctx";
 import { useForm } from "../../lib/form";
+import { withPageWrapper } from "../../lib/pageWrapper";
 import {
   type EditMemoryRouteParams,
   getViewMemoryRoute,
 } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
 
-const EditMemoryComponent = ({
-  memory,
-}: {
-  memory: NonNullable<TrpcRouterOutput["getMemory"]["memory"]>;
-}) => {
+export const EditMemoryPage = withPageWrapper({
+  authorizedOnly: true,
+  useQuery: () => {
+    const { memoryId } = useParams() as EditMemoryRouteParams;
+    return trpc.getMemory.useQuery({ memoryId });
+  },
+  checkExists: ({ queryResult }) => !!queryResult.data?.memory,
+  checkExistsMessage: "Memory not found",
+  checkAccess: ({ queryResult, ctx }) =>
+    !!ctx.me && ctx.me.id === queryResult.data.memory?.authorId,
+  checkAccessMessage: "An memory can only be edited by the author",
+  setProps: ({ queryResult }) => ({ memory: queryResult.data.memory! }),
+})(({ memory }) => {
   const navigate = useNavigate();
   const updateMemory = trpc.updateMemory.useMutation();
   const { formik, buttonProps, alertProps } = useForm({
@@ -54,37 +61,4 @@ const EditMemoryComponent = ({
       </form>
     </Segment>
   );
-};
-
-export const EditMemoryPage = () => {
-  const { memoryId } = useParams() as EditMemoryRouteParams;
-
-  const getMemoryResult = trpc.getMemory.useQuery({
-    memoryId,
-  });
-  const me = useMe();
-
-  if (getMemoryResult.isLoading || getMemoryResult.isFetching) {
-    return <span>Loading...</span>;
-  }
-
-  if (getMemoryResult.isError) {
-    return <span>Error: {getMemoryResult.error.message}</span>;
-  }
-
-  if (!getMemoryResult.data?.memory) {
-    return <span>Idea not found</span>;
-  }
-
-  const memory = getMemoryResult.data.memory;
-
-  if (!me) {
-    return <span>Only for authorized</span>;
-  }
-
-  if (me.id !== memory.authorId) {
-    return <span>An idea can only be edited by the author</span>;
-  }
-
-  return <EditMemoryComponent memory={memory} />;
-};
+});

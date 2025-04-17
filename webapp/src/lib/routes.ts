@@ -6,8 +6,8 @@ export const getEditMemoryRoute = ({ memoryId }: EditMemoryRouteParams) =>
   `/memories/${memoryId}/edit`;
 
 export const viewMemoryRouteParams = { memoryId: ":memoryId" };
-export type viewMemoryRouteTypes = { memoryId: string };
-export const getViewMemoryRoute = ({ memoryId }: viewMemoryRouteTypes) =>
+export type ViewMemoryRouteParams = { memoryId: string };
+export const getViewMemoryRoute = ({ memoryId }: ViewMemoryRouteParams) =>
   `/memories/${memoryId}`;
 
 export const getNewMemoryRoute = () => `/memories/new`;

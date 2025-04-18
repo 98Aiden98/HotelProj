@@ -17,10 +17,8 @@ export const ViewMemoryPage = withPageWrapper({
       memoryId,
     });
   },
-  checkExists: ({ queryResult }) => !!queryResult.data?.memory,
-  checkExistsMessage: "Memory not found",
-  setProps: ({ queryResult, ctx }) => ({
-    memory: queryResult.data.memory!,
+  setProps: ({ queryResult, checkExists, ctx }) => ({
+    memory: checkExists(queryResult.data.memory, "Memory not found"),
     me: ctx.me,
   }),
 })(({ memory, me }) => (

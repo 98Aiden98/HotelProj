@@ -7,6 +7,7 @@ import { AllMemoriesPage } from "./pages/AllMemoriesPage";
 import "./styles/global.scss";
 import { EditMemoryPage } from "./pages/EditMemoryPage";
 import { NewMemoryPage } from "./pages/NewMemoryPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { SignInPage } from "./pages/SignInPage";
 import { SignOutPage } from "./pages/SignOutPage";
 import { SignUpPage } from "./pages/SignUpPage";
@@ -37,6 +38,7 @@ export const App = () => {
                 path={routes.getViewMemoryRoute(routes.viewMemoryRouteParams)}
                 element={<ViewMemoryPage />}
               />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -21,12 +21,16 @@ export const EditMemoryPage = withPageWrapper({
     const { memoryId } = useParams() as EditMemoryRouteParams;
     return trpc.getMemory.useQuery({ memoryId });
   },
-  checkExists: ({ queryResult }) => !!queryResult.data?.memory,
-  checkExistsMessage: "Memory not found",
-  checkAccess: ({ queryResult, ctx }) =>
-    !!ctx.me && ctx.me.id === queryResult.data.memory?.authorId,
-  checkAccessMessage: "An memory can only be edited by the author",
-  setProps: ({ queryResult }) => ({ memory: queryResult.data.memory! }),
+  setProps: ({ queryResult, ctx, checkExists, checkAccess }) => {
+    const memory = checkExists(queryResult.data.memory, "Memory not found");
+    checkAccess(
+      ctx.me?.id === memory.authorId,
+      "An memory can only be edited by the author",
+    );
+    return {
+      memory,
+    };
+  },
 })(({ memory }) => {
   const navigate = useNavigate();
   const updateMemory = trpc.updateMemory.useMutation();

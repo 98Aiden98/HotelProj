@@ -3,15 +3,15 @@ import { Layout } from "./components/Layout";
 import { AppContextProvider } from "./lib/ctx";
 import * as routes from "./lib/routes";
 import { TrpcProvider } from "./lib/trpc";
-import { AllMemoriesPage } from "./pages/AllMemoriesPage";
+import { SignInPage } from "./pages/auth/SignInPage";
+import { SignOutPage } from "./pages/auth/SignOutPage";
+import { SignUpPage } from "./pages/auth/SignUpPage";
+import { AllMemoriesPage } from "./pages/memories/AllMemoriesPage";
 import "./styles/global.scss";
-import { EditMemoryPage } from "./pages/EditMemoryPage";
-import { NewMemoryPage } from "./pages/NewMemoryPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { SignInPage } from "./pages/SignInPage";
-import { SignOutPage } from "./pages/SignOutPage";
-import { SignUpPage } from "./pages/SignUpPage";
-import { ViewMemoryPage } from "./pages/ViewMemoryPage";
+import { EditMemoryPage } from "./pages/memories/EditMemoryPage";
+import { NewMemoryPage } from "./pages/memories/NewMemoryPage";
+import { ViewMemoryPage } from "./pages/memories/ViewMemoryPage";
+import { NotFoundPage } from "./pages/other/NotFoundPage";
 export const App = () => {
   return (
     <TrpcProvider>

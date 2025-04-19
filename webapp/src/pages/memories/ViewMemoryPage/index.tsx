@@ -26,7 +26,10 @@ export const ViewMemoryPage = withPageWrapper({
     <div className={css.createdAt}>
       Created At: {format(memory.createdAt, "yyyy-MM-dd")}
     </div>
-    <div className={css.author}>Author: {memory.author.nick}</div>
+    <div className={css.author}>
+      Author: {memory.author.nick}
+      {memory.author.name ? ` (${memory.author.name})` : ``}
+    </div>
     <div
       className={css.text}
       dangerouslySetInnerHTML={{ __html: memory.text }}

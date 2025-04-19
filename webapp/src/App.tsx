@@ -12,6 +12,7 @@ import { EditMemoryPage } from "./pages/memories/EditMemoryPage";
 import { NewMemoryPage } from "./pages/memories/NewMemoryPage";
 import { ViewMemoryPage } from "./pages/memories/ViewMemoryPage";
 import { NotFoundPage } from "./pages/other/NotFoundPage";
+import { EditProfilePage } from "./pages/auth/EditProfilePage";
 export const App = () => {
   return (
     <TrpcProvider>
@@ -29,6 +30,10 @@ export const App = () => {
               <Route
                 path={routes.getNewMemoryRoute()}
                 element={<NewMemoryPage />}
+              />
+              <Route
+                path={routes.getEditProfileRoute()}
+                element={<EditProfilePage />}
               />
               <Route
                 path={routes.getEditMemoryRoute(routes.editMemoryRouteParams)}

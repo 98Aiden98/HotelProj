@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useMe } from "../../lib/ctx";
 import {
   getAllMemoriesRoute,
+  getEditProfileRoute,
   getNewMemoryRoute,
   getSignInRoute,
   getSignOutRoute,
@@ -27,6 +28,11 @@ export const Layout = () => {
               <li className={css.item}>
                 <Link className={css.link} to={getNewMemoryRoute()}>
                   Add memory
+                </Link>
+              </li>
+              <li className={css.item}>
+                <Link className={css.link} to={getEditProfileRoute()}>
+                  Edit profile
                 </Link>
               </li>
               <li className={css.item}>

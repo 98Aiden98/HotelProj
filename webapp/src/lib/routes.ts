@@ -11,6 +11,7 @@ export const getViewMemoryRoute = ({ memoryId }: ViewMemoryRouteParams) =>
   `/memories/${memoryId}`;
 
 export const getNewMemoryRoute = () => `/memories/new`;
+export const getEditProfileRoute = () => `/edit-profile`;
 export const getSignUpRoute = () => `/sign-up`;
 export const getSignInRoute = () => `/sign-in`;
 export const getSignOutRoute = () => `/sign-out`;

@@ -18,6 +18,7 @@ export const getMemoryTrpcRoute = trpc.procedure
           select: {
             id: true,
             nick: true,
+            name: true,
           },
         },
       },

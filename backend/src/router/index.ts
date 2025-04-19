@@ -5,6 +5,7 @@ import { trpc } from "../lib/trpc";
 import { getMeTrpcRoute } from "./auth/getMe";
 import { signInTrpcRoute } from "./auth/signIn";
 import { signUpTrpcRoute } from "./auth/signUp";
+import { updateProfileTrpcRoute } from "./auth/updateProfile";
 import { createMemoryTrpcRoute } from "./memories/createMemory";
 import { getMemoriesTrpcRoute } from "./memories/getMemories";
 import { getMemoryTrpcRoute } from "./memories/getMemory";
@@ -16,6 +17,7 @@ export const trpcRouter = trpc.router({
   getMe: getMeTrpcRoute,
   signIn: signInTrpcRoute,
   signUp: signUpTrpcRoute,
+  updateProfile: updateProfileTrpcRoute,
   createMemory: createMemoryTrpcRoute,
   getMemories: getMemoriesTrpcRoute,
   getMemory: getMemoryTrpcRoute,

@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { AppContextProvider } from "./lib/ctx";
 import * as routes from "./lib/routes";
 import { TrpcProvider } from "./lib/trpc";
+import { EditProfilePage } from "./pages/auth/EditProfilePage";
 import { SignInPage } from "./pages/auth/SignInPage";
 import { SignOutPage } from "./pages/auth/SignOutPage";
 import { SignUpPage } from "./pages/auth/SignUpPage";
@@ -12,7 +13,6 @@ import { EditMemoryPage } from "./pages/memories/EditMemoryPage";
 import { NewMemoryPage } from "./pages/memories/NewMemoryPage";
 import { ViewMemoryPage } from "./pages/memories/ViewMemoryPage";
 import { NotFoundPage } from "./pages/other/NotFoundPage";
-import { EditProfilePage } from "./pages/auth/EditProfilePage";
 export const App = () => {
   return (
     <TrpcProvider>

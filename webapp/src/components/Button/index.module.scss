@@ -17,6 +17,7 @@
     background-color 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease;
+  position: relative;
 
   &:hover {
     background-color: color.scale($primary-color, $lightness: -10%);
@@ -33,5 +34,13 @@
     background-color: $border-color;
     color: color.scale($text-color, $lightness: 40%);
     cursor: not-allowed;
+  }
+
+  &.loading{
+    @include loader($borderWidth: 3px, $size: 20px, $color: $primary-color);
+  
+    .text{
+      opacity: 0;
+    }
   }
 }

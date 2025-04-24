@@ -1,0 +1,20 @@
+@use '../../styles/_vars.scss' as *;
+@use '../../styles/_mixins.scss' as *;
+
+.loader{
+    &.type-page{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        @include loader($borderWidth: 5px, $size: 60px, $color: $primary-color);
+    }
+
+    &.type-section{
+        position: relative;
+        display: block;
+        height: 80px;
+        width: 100%;
+        @include loader($borderWidth: 5px, $size: 60px, $color: $primary-color);
+    }
+}

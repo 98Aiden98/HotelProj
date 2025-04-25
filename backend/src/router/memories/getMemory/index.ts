@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { z } from "zod";
 import { memories } from "../../../lib/memories";
 import { trpc } from "../../../lib/trpc";
@@ -9,7 +10,7 @@ export const getMemoryTrpcRoute = trpc.procedure
     }),
   )
   .query(async ({ ctx, input }) => {
-    const memory = await ctx.prisma.memory.findUnique({
+    const rawMemory = await ctx.prisma.memory.findUnique({
       where: {
         nick: input.memoryId,
       },
@@ -21,7 +22,28 @@ export const getMemoryTrpcRoute = trpc.procedure
             name: true,
           },
         },
+        memoriesLikes: {
+          select: {
+            id: true,
+          },
+          where: {
+            userId: ctx.me?.id,
+          },
+        },
+        _count: {
+          select: {
+            memoriesLikes: true,
+          },
+        },
       },
     });
+
+    const isLikedByMe = !!rawMemory?.memoriesLikes.length;
+    const likesCount = rawMemory?._count.memoriesLikes || 0;
+    const memory = rawMemory && {
+      ..._.omit(rawMemory, ["memoriesLikes", "_count"]),
+      isLikedByMe,
+      likesCount,
+    };
     return { memory };
   });

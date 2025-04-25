@@ -28,6 +28,14 @@
   & > *:not(:first-child) {
     margin-top: 1rem;
   }
+
+  .likes{
+    margin-top: 20px;
+
+    .likeButton{
+      @include link;
+    }
+  }
 }
 
 .editButton{

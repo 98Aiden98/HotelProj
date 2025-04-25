@@ -70,7 +70,9 @@ export const AllMemoriesPage = () => {
                     }
                     size={2}
                     description={memory.description}
-                  />
+                  >
+                    Likes: {memory.likesCount}
+                  </Segment>
                 </div>
               ))}
           </InfiniteScroll>

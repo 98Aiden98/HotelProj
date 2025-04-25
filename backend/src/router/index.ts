@@ -10,6 +10,7 @@ import { updateProfileTrpcRoute } from "./auth/updateProfile";
 import { createMemoryTrpcRoute } from "./memories/createMemory";
 import { getMemoriesTrpcRoute } from "./memories/getMemories";
 import { getMemoryTrpcRoute } from "./memories/getMemory";
+import { setMemoryLikeTrpcRoute } from "./memories/setMemoryLike";
 import { updateMemoryTrpcRoute } from "./memories/updateMemory";
 // @endindex
 
@@ -23,6 +24,7 @@ export const trpcRouter = trpc.router({
   createMemory: createMemoryTrpcRoute,
   getMemories: getMemoriesTrpcRoute,
   getMemory: getMemoryTrpcRoute,
+  setMemoryLike: setMemoryLikeTrpcRoute,
   updateMemory: updateMemoryTrpcRoute,
   // @endindex
 });
